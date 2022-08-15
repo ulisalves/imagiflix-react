@@ -5,9 +5,10 @@ import logo from '../assets/Imaginiflix.png';
 import { faSearch, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import placeholderUsers from '../assets/user.jpg';
 
+import './NavBar.css';
 
 const NavBar = () => (
-    <nav className='absolute top-0 left-0 grid grid-cols-2 items-center w-full p-8'>
+    <nav className='navbar absolute top-0 left-0 grid grid-cols-2 items-center w-full p-8'>
         <div className='justify-self-start grid grid-cols-2 gap-4 items-center'>
             <h1 className='hidden'>Imaginiflix</h1>
                 <img src={logo} alt='Imaginiflix'/>
@@ -29,7 +30,10 @@ const NavBar = () => (
                     type='text' 
                     placeholder='Títulos, gente e gêneros' 
                 />
-                <button className='absolute right-0 py-1 px-2'>
+                <button 
+                    className='search absolute right-0 py-1 px-2' 
+                    onClick={(e) => e.preventDefault()}
+                >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </form>
