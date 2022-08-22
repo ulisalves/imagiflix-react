@@ -1,4 +1,6 @@
 import React from 'react';
+import CONST from '../components/data/contants';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
