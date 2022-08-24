@@ -1,6 +1,7 @@
 import React, {  useState,useEffect } from 'react';
 import CONST from './components/data/contants';
 
+import Loading from './components/Loading';
 import Hero from './components/Hero';
 import NavBar from './components/NavBar';
 import Carousel from './components/Carousel'
@@ -15,6 +16,7 @@ const App = () => {
 
   const [ movies, setMovies ] = useState<any>();
   const [series, setSeries] = useState<any>();
+  const [loading, setLoading] = useState<any>(true);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +27,8 @@ const App = () => {
       const series = await fetch(`${URL}/discover/tv${APISTRING}&sort_by=popularity.desc`);
       const seriesData = await series.json();
       setSeries(seriesData);
+
+      setLoading(false);
     }
       fetchData();
     }, []);
@@ -45,12 +49,22 @@ const App = () => {
 
   return (
     <div className="m-auto antialised font-sans bg-black text-white">
-       <Hero {...getFeaturedMovie()}/>
-      <NavBar />
-      <Carousel title='Filmes Populares' data={getMovieList()} />
-      <Carousel title='Séries Populares' data={series?.results}/>
-      <Carousel title='placeholder' />
-      <Footer />
+      {loading && (
+        <>
+          <Loading />
+          <NavBar />
+        </>
+      )}
+        {!loading && (
+              <>
+                <Hero {...getFeaturedMovie()}/>
+                <NavBar />
+                <Carousel title='Filmes Populares' data={getMovieList()} />
+                <Carousel title='Séries Populares' data={series?.results}/>
+                <Carousel title='placeholder' />
+              </>
+        )}
+        <Footer />
     </div>
   );
 }
