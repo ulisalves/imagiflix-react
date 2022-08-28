@@ -2,7 +2,7 @@ import React from 'react';
 import emitter from '../utils/eventEmitter';
 
 import CONST from '../components/data/contants';
-import {Title, TitleType} from '../App';
+import {TitleType} from '../App';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
