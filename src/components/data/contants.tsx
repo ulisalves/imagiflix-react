@@ -6,11 +6,12 @@ const EVENTS = {
     PosterClick: 'PosterClick',
     ModalClose: 'ModalClose',
 };
-
-export default {
+const Contant = {
     URL,
     IMAGEURL,
     APIKEY,
     APISTRING,
     EVENTS,
 };
+
+export default Contant;
