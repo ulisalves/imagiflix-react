@@ -7,6 +7,7 @@ import Hero from './components/Hero';
 import NavBar from './components/NavBar';
 import Carousel from './components/Carousel'
 import Footer from './components/Footer'
+import Modal from './components/Modal';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -41,13 +42,16 @@ const App = () => {
   };
 
   const getTitle = async ({ type, id }: Title) => {
+      setLoading(true);
       const title = await fetch(`${URL}/${type}/${id}${APISTRING}`);
       const titleData = await title.json();
       setTitle(titleData);
+      setLoading(false);
   };
 
     useEffect(() => {
     emitter.addListener(CONST.EVENTS.PosterClick, getTitle);
+    emitter.addListener(CONST.EVENTS.ModalClose, () => setTitle(undefined));
 
     const fetchData = async () => {
       const movies = await fetch(`${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`);
@@ -63,8 +67,6 @@ const App = () => {
       fetchData();
     }, []);
 
-  useEffect(() => title && console.log(title), [ title ]);
-
   return (
     <div className="m-auto antialised font-sans bg-black text-white">
       {loading && (
@@ -79,10 +81,10 @@ const App = () => {
                 <NavBar />
                 <Carousel title='Filmes Populares' data={getMovieList()} />
                 <Carousel title='Séries Populares' data={series?.results} />
-                <Carousel title='placeholder' />
               </>
         )}
         <Footer />
+        {!loading && title && <Modal {...title} />}
     </div>
   );
 }
