@@ -19,7 +19,7 @@ const Modal = ({poster_path, title, original_title, name, original_name, overvie
                 <img className='w-4/5 h-full' src={`${IMAGEURL}/w500/${poster_path}`} alt={title ? title : name} />
                 <div className='relative'>
                     <FontAwesomeIcon
-                        className='fixed cursor-pointer absolute top-0 left-full text-red-600'
+                        className='fixed cursor-pointer absolute top-0 left-96 text-red-600'
                         icon={faTimesCircle}
                         size='2x'
                         onClick={handleClick}
