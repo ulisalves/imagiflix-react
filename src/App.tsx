@@ -43,7 +43,7 @@ const App = () => {
 
   const getTitle = async ({ type, id }: Title) => {
       setLoading(true);
-      const title = await fetch(`'https://api.themoviedb.org/3'/${type}/${id}?api_key='703044e6ebd5a3df77f906836fec13ec'&language=pt-BR`);
+      const title = await fetch(`${'https://api.themoviedb.org/3'}/${type}/${id}${`?api_key=${'703044e6ebd5a3df77f906836fec13ec'}&language=pt-BR`}`);
       const titleData = await title.json();
       setTitle(titleData);
       setLoading(false);
